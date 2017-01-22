@@ -15,7 +15,11 @@ app.get('/', function(request, response) {
   response.render('pages/index')
 });
 
-app.get('/cool', function(request, response) {
+app.get('/sample', function(request, response) {
+  response.render('pages/sample')
+});
+
+app.get('/face', function(request, response) {
   response.send(cool());
 });
 
