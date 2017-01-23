@@ -7,30 +7,40 @@ a {
 .navigationBar {
   align-items: center;
   display: flex;
-  list-style: none;
-  position: fixed;
-  top: 0;
-  left: 0;
+  position: absolute;
   width: 100%;
+  left: 0;
+  top: 0;
+  list-style: none;
+  background-color: #B20109;
+  justify-content: flex-end;
   margin: 0;
   padding: 0;
-  background-color: #4ABDAC;
-  justify-content: flex-end;
-
 }
 
 .navigationBar li a {
   text-decoration: none;
+  text-align: center;
   display: block;
+  width: 60px;
   padding: 1em;
   color: white;
   transition: background 0.15s linear;
 }
 
 .navigationBar li a:hover {
-  background: #249786;
+  background: #990000;
 }
 
 .active {
-  background: #249786;
+  background: #990000;
+}
+
+.homeImg {
+  position: absolute;
+  left:0;
+}
+
+.navigationSpacer {
+  padding: 5px;
 }
