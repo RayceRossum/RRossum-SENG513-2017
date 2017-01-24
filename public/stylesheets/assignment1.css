@@ -14,9 +14,9 @@ a {
   align-items: center;
   display: flex;
   position: absolute;
-  left: 70vw;
+  right: 0;
   top: 0;
-  width: 25vw;
+  min-width: 300px;
   list-style: none;
   background-color: #B20109;
   justify-content: flex-end;
@@ -28,7 +28,7 @@ a {
   text-decoration: none;
   text-align: center;
   display: block;
-  width: 6.65vw;
+  min-width: 6.65vw;
   padding: 1em;
   color: white;
 }
@@ -67,20 +67,6 @@ a {
     position: absolute;
     left: 0%;
     width: 60.75vw;
-  }
-
-  .navigationBar {
-    align-items: center;
-    display: flex;
-    position: absolute;
-    left: 62.5vw;
-    top: 0;
-    width: 35vw;
-    list-style: none;
-    background-color: #B20109;
-    justify-content: flex-end;
-    margin: 0;
-    padding: 0;
   }
 }
 
