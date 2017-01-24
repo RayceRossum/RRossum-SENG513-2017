@@ -14,9 +14,9 @@ a {
   align-items: center;
   display: flex;
   position: absolute;
-  left: 62.5vw;
+  left: 70vw;
   top: 0;
-  width: 35vw;
+  width: 25vw;
   list-style: none;
   background-color: #B20109;
   justify-content: flex-end;
@@ -31,10 +31,13 @@ a {
   width: 6.65vw;
   padding: 1em;
   color: white;
+}
+
+.navigationBar li {
   transition: background 0.15s linear;
 }
 
-.navigationBar li a:hover {
+.navigationBar li:hover {
   background: #990000;
 }
 
@@ -64,6 +67,20 @@ a {
     position: absolute;
     left: 0%;
     width: 60.75vw;
+  }
+
+  .navigationBar {
+    align-items: center;
+    display: flex;
+    position: absolute;
+    left: 62.5vw;
+    top: 0;
+    width: 35vw;
+    list-style: none;
+    background-color: #B20109;
+    justify-content: flex-end;
+    margin: 0;
+    padding: 0;
   }
 }
 
