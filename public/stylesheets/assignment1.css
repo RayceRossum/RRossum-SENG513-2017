@@ -14,7 +14,7 @@ a {
   align-items: center;
   display: flex;
   position: absolute;
-  left: 63vw;
+  left: 62.5vw;
   top: 0;
   width: 35vw;
   list-style: none;
@@ -53,7 +53,7 @@ a {
 
 .quotes {
   position: relative;
-  left:65%;
+  left:63vw;
   width: 35%;
 }
 
@@ -70,7 +70,8 @@ a {
 }
 
 .quotes li{
-  padding-bottom: 2vh;
+  font-size: 1em;
+  padding-bottom: 1.6vh;
   list-style: none;
 }
 
