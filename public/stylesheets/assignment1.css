@@ -14,9 +14,9 @@ a {
   align-items: center;
   display: flex;
   position: absolute;
-  width: 100%;
-  left: 0;
+  left: 63vw;
   top: 0;
+  width: 35vw;
   list-style: none;
   background-color: #B20109;
   justify-content: flex-end;
@@ -28,7 +28,7 @@ a {
   text-decoration: none;
   text-align: center;
   display: block;
-  width: 100px;
+  width: 6.65vw;
   padding: 1em;
   color: white;
   transition: background 0.15s linear;
@@ -70,7 +70,7 @@ a {
 }
 
 .quotes li{
-  padding-bottom: .6em;
+  padding-bottom: 2vh;
   list-style: none;
 }
 
@@ -80,9 +80,10 @@ a {
 }
 
 .homeImg {
+  padding-top: 25px;
   position: absolute;
   left: 0%;
-  width: 63%;
+  width: 60.75vw;
 }
 
 .homeImg img {
