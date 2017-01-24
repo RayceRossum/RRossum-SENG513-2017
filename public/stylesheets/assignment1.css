@@ -1,3 +1,9 @@
+body {
+  background-color: #B20109;
+  font-family: sans-serif;
+  color:white;
+}
+
 a {
  color: white;
  text-decoration: none;
@@ -22,7 +28,7 @@ a {
   text-decoration: none;
   text-align: center;
   display: block;
-  width: 60px;
+  width: 100px;
   padding: 1em;
   color: white;
   transition: background 0.15s linear;
@@ -42,5 +48,47 @@ a {
 }
 
 .navigationSpacer {
-  padding: 5px;
+  padding-bottom: 42px;
+}
+
+.quotes {
+  position: relative;
+  left:65%;
+  width: 35%;
+}
+
+.quotes img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+  max-height: 85%;
+}
+
+.quotes ul {
+  padding-right: 40px;
+}
+
+.quotes li{
+  padding-bottom: .6em;
+  list-style: none;
+}
+
+.credits {
+  padding-top: 15px;
+  float:right;
+}
+
+.homeImg {
+  position: absolute;
+  left: 0%;
+  width: 63%;
+}
+
+.homeImg img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+  max-height: 100%;
 }
