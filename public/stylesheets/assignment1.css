@@ -42,11 +42,6 @@ a {
   background: #990000;
 }
 
-.homeImg {
-  position: absolute;
-  left:0;
-}
-
 .navigationSpacer {
   padding-bottom: 0px;
 }
@@ -57,10 +52,19 @@ a {
 
 }
 
-.quotes {
-  position: relative;
-  left:63vw;
-  width: 35%;
+@media screen and (min-width: 720px) {
+  .quotes {
+    position: relative;
+    left:63vw;
+    max-width: 35%;
+  }
+
+  .homeImg {
+    padding-top: 25px;
+    position: absolute;
+    left: 0%;
+    width: 60.75vw;
+  }
 }
 
 .quotes img {
@@ -84,13 +88,6 @@ a {
 .credits {
   padding-top: 15px;
   float:right;
-}
-
-.homeImg {
-  padding-top: 25px;
-  position: absolute;
-  left: 0%;
-  width: 60.75vw;
 }
 
 .homeImg img {
