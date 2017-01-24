@@ -48,7 +48,13 @@ a {
 }
 
 .navigationSpacer {
-  padding-bottom: 42px;
+  padding-bottom: 0px;
+}
+
+.navigationSpacer img {
+  max-height: 35px;
+  padding-bottom: 5px;
+
 }
 
 .quotes {

@@ -19,13 +19,20 @@ app.get('/', function(request, response) {
   response.render('pages/index')
 });
 
-app.get('/sample', function(request, response) {
-  response.render('pages/sample')
+app.get('/about', function(request, response) {
+  response.render('pages/about')
 });
 
 app.get('/face', function(request, response) {
   response.send(cool());
 });
+
+app.get('/media', function(request, response) {
+  response.render('pages/media')
+});
+app.get('/twitter', function(request, response){
+  response.render('pages/twitter');
+})
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
