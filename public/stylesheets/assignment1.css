@@ -126,3 +126,10 @@ a {
 .factsTable sources {
   font-size: 8px;
 }
+
+iframe {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+}
