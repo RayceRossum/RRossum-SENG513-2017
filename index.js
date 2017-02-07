@@ -30,8 +30,13 @@ app.get('/face', function(request, response) {
 app.get('/media', function(request, response) {
   response.render('pages/media')
 });
+
 app.get('/twitter', function(request, response){
   response.render('pages/twitter');
+})
+
+app.get('/a2', function(request, response){
+  response.render('pages/assignment2');
 })
 
 app.listen(app.get('port'), function() {
