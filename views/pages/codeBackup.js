@@ -1,13 +1,12 @@
 function getStats(txt) {
-  alert("Test");
     // you need to write your own code here
     return {
         nChars: getnChars(),
         nWords: getnWords(),
         nLines: getnLines(),
         nNonEmptyLines: getnNonEmptyLines(),
-        maxLineLength: getmaxLineLength(),
         averageWordLength: getaverageWordLength(),
+        maxLineLength: getmaxLineLength(),
         allPalindromes: getallPalindromes(),
         tenLongestWords: gettenLongestWords(),
         tenMostFrequentWords: gettenMostFrequentWords()
@@ -21,13 +20,13 @@ function getStats(txt) {
     var text = document.getElementById("txtarea").value;
     var words = text.split(/\s|\+/g);
 
-    /*var index;
+    var index;
     while ((index = words.indexOf("")) !== -1) {
       words.splice(index, 1);
-    }*/
+    }
 
     words.forEach(function (curVal, index){
-      words[index] = curVal.replace([^A-Za-z0-9]," ").trim(); // replaces conflicting special characters but maintains their array allocation, which is consistent for numWords
+      words[index] = curVal.replace(/[\) .?,!:-]+/g," ").trim(); // replaces conflicting special characters but maintains their array allocation, which is consistent for numWords
     });
 
     return words;
@@ -39,7 +38,7 @@ function getStats(txt) {
 
   function getLines() {
     var text = document.getElementById("txtarea").value;
-    return text.split(/\r\n|\r|\n/);
+    return text.split(/\r*\n/);
   }
 
   function getnLines() {
@@ -48,11 +47,11 @@ function getStats(txt) {
 
   function getnNonEmptyLines() {
     var lines = getLines()
-    var nonEmptyLines = [];
+    var nonEmptyLines = lines;
 
     lines.forEach(function (curVal, index) {
-      if (curVal.length) {
-        nonEmptyLines.push(curVal);
+      if (curVal.search(/\s+/g) === -1) {
+        nonEmptyLines.splice(index, 1);
       }
     });
 
@@ -62,10 +61,10 @@ function getStats(txt) {
   function getaverageWordLength() {
     var words = getWords();
 
-    /*var index;
+    var index;
     while ((index = words.indexOf("")) !== -1) {
       words.splice(index, 1);
-    }*/
+    }
 
     var totalWordChars = 0;
     words.forEach(function (curVal, index) {

@@ -5,8 +5,8 @@ function getStats(txt) {
         nWords: getnWords(),
         nLines: getnLines(),
         nNonEmptyLines: getnNonEmptyLines(),
-        averageWordLength: getaverageWordLength(),
         maxLineLength: getmaxLineLength(),
+        averageWordLength: getaverageWordLength(),
         allPalindromes: getallPalindromes(),
         tenLongestWords: gettenLongestWords(),
         tenMostFrequentWords: gettenMostFrequentWords()
@@ -18,17 +18,19 @@ function getStats(txt) {
 
   function getWords() {
     var text = document.getElementById("txtarea").value;
-    var words = text.split(/\s|\+/g);
+    var alphaNumericText = "";
+    var regex = new RegExp(/[a-zA-Z0-9]/);
 
-    var index;
-    while ((index = words.indexOf("")) !== -1) {
-      words.splice(index, 1);
+    for (var i = 0; i < text.length; i ++) {
+      var character = text.charAt(i);
+      if (regex.test(character)) {
+        alphaNumericText = alphaNumericText.concat(character)
+      } else {
+        alphaNumericText = alphaNumericText.concat(" ")
+      }
     }
 
-    words.forEach(function (curVal, index){
-      words[index] = curVal.replace(/[\) .?,!:-]+/g," ").trim(); // replaces conflicting special characters but maintains their array allocation, which is consistent for numWords
-    });
-
+    var words = alphaNumericText.replace(/\s+/g,' ').trim().split(" ");
     return words;
   }
 
@@ -38,7 +40,7 @@ function getStats(txt) {
 
   function getLines() {
     var text = document.getElementById("txtarea").value;
-    return text.split(/\r*\n/);
+    return text.split(/\r\n|\r|\n/);
   }
 
   function getnLines() {
@@ -47,11 +49,11 @@ function getStats(txt) {
 
   function getnNonEmptyLines() {
     var lines = getLines()
-    var nonEmptyLines = lines;
+    var nonEmptyLines = [];
 
     lines.forEach(function (curVal, index) {
-      if (curVal.search(/\s+/g) === -1) {
-        nonEmptyLines.splice(index, 1);
+      if (curVal.length) {
+        nonEmptyLines.push(curVal);
       }
     });
 
@@ -60,11 +62,6 @@ function getStats(txt) {
 
   function getaverageWordLength() {
     var words = getWords();
-
-    var index;
-    while ((index = words.indexOf("")) !== -1) {
-      words.splice(index, 1);
-    }
 
     var totalWordChars = 0;
     words.forEach(function (curVal, index) {
@@ -108,30 +105,36 @@ function getStats(txt) {
 
   function gettenLongestWords() {
     var words = getWords();
-    var tenLongest = words.sort(function (a, b) { return b.length - a.length; });
+    var uniqueWords = [];
 
-    return tenLongest.slice(0, 10).sort(function (a, b) {
-        var returnVal = b - a;
-        if (returnVal === 0 && a !== "" && b !== "") {
-            var nameA = a.toLowerCase();
-            var nameB = b.toLowerCase();
+    for (var word in words) {
+      if (!uniqueWords.includes(words[word])) {
+        uniqueWords.push(words[word]);
+      }
+    }
+    var tenLongest = uniqueWords.sort(function (a, b) { return b.length - a.length; });
 
-            if (nameA < nameB) {
-              return -1;
-            }
-            if (nameA > nameB) {
-              return 1;
-            }
-            return 0;
+    // Natural sort modeled after: http://stackoverflow.com/questions/4373018/sort-array-of-numeric-alphabetical-elements-natural-sort/
+    return tenLongest.sort(function (a, b) {
+        a = a.toLowerCase();
+        b = b.toLowerCase();
 
+        var returnVal = b.length - a.length;
+        if (returnVal === 0) {
+            if (isNaN(a)&&isNaN(b)) return a<b?-1:a==b?0:1;//both are string
+            else if (isNaN(a)) return 1;//only a is a string
+            else if (isNaN(b)) return -1;//only b is a string
+            else return a-b;//both are num
         } else {
           return returnVal;
         }
-    });
+    }).slice(0, 10);
   }
 
   function gettenMostFrequentWords() {
     var words = getWords().sort();
+    words = words.map(v => v.toLowerCase());
+
     var obj = { };
     for (var i = 0, j = words.length; i < j; i++) {
        obj[words[i]] = (obj[words[i]] || 0) + 1;
@@ -143,20 +146,14 @@ function getStats(txt) {
       objArray.push({key : objectKey, val: value});
     });
 
+// Natural sort modeled after: http://stackoverflow.com/questions/4373018/sort-array-of-numeric-alphabetical-elements-natural-sort/
     objArray = objArray.sort(function (a, b) {
         var returnVal = b.val - a.val;
-        if (returnVal === 0 && a.key !== "" && b.key!== "") {
-            var nameA = a.key.toLowerCase();
-            var nameB = b.key.toLowerCase();
-
-            if (nameA < nameB) {
-              return -1;
-            }
-            if (nameA > nameB) {
-              return 1;
-            }
-            return 0;
-
+        if (returnVal === 0) {
+            if (isNaN(a.key)&&isNaN(b.key)) return a.key<b.key?-1:a.key==b.key?0:1;//both are string
+            else if (isNaN(a.key)) return 1;//only a is a string
+            else if (isNaN(b.key)) return -1;//only b is a string
+            else return a.key-b.key;//both are num
         } else {
           return returnVal;
         }
