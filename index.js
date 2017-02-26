@@ -1,4 +1,5 @@
 var pg = require('pg');
+var io = require('socket.io')(http);
 var cool = require('cool-ascii-faces');
 var express = require('express');
 var app = express();
@@ -33,11 +34,21 @@ app.get('/media', function(request, response) {
 
 app.get('/twitter', function(request, response){
   response.render('pages/twitter');
-})
+});
 
 app.get('/a2', function(request, response){
   response.render('pages/assignment2');
-})
+});
+
+app.get('/chat', function(request, reponse) {
+  response.render('pages/chat');
+});
+
+io.on('connection', function(socket){
+  socket.on('chat', function(msg){
+     io.emit('chat', msg);
+  });
+});
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
