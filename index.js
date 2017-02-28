@@ -1,16 +1,18 @@
 var pg = require('pg');
-var io = require('socket.io')(http);
 var cool = require('cool-ascii-faces');
-var express = require('express');
-var app = express();
+var http = require('http');
+var express = require('express'),
+  app = module.exports.app = express();
 
 app.set('port', (process.env.PORT || 5000));
-
-app.use(express.static(__dirname + '/public'));
-
-// views is directory for all template files
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
+app.use(express.static(__dirname + '/public'));
+
+var server = app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
+});
+var io = require('socket.io').listen(server);
 
 app.get('/favicon.ico', function(request, response) {
   response.sendFile('/favicon.ico')
@@ -40,18 +42,8 @@ app.get('/a2', function(request, response){
   response.render('pages/assignment2');
 });
 
-app.get('/chat', function(request, reponse) {
+app.get('/chat', function(request, response) {
   response.render('pages/chat');
-});
-
-io.on('connection', function(socket){
-  socket.on('chat', function(msg){
-     io.emit('chat', msg);
-  });
-});
-
-app.listen(app.get('port'), function() {
-  console.log('Node app is running on port', app.get('port'));
 });
 
 app.get('/db', function (request, response) {
@@ -63,5 +55,14 @@ app.get('/db', function (request, response) {
       else
        { response.render('pages/db', {results: result.rows} ); }
     });
+  });
+});
+
+io.on('connect', function(socket){
+  io.emit('chat', "Welcome to the Trump is Love Chatroom!");
+
+  socket.on('chat', function(msg){
+    console.log(msg);
+    io.emit('chat', msg);
   });
 });
